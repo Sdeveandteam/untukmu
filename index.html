@@ -25,22 +25,28 @@
   }
 
 .page{
-    position:relative; /* biar GIF bisa absolute di atasnya */
+    position:relative;
     display:none;width:90%;max-width:500px;
-    background:rgba(0,0,0,0.35);padding:40px 30px 30px;
+    background:rgba(0,0,0,0.35);padding:50px 30px 30px;
     border-radius:20px;backdrop-filter:blur(8px)
   }
 .page.active{display:block}
 
-  /* GIF diposisikan absolute di atas box */
+  /* GIF di atas box + animasi floating */
 .gif{
     position:absolute;
-    top:-60px;
+    top:-75px; /* dinaikin lagi */
     left:50%;
     transform:translateX(-50%);
     width:120px;
     border-radius:15px;
     pointer-events:none;
+    animation:float 3s ease-in-out infinite; /* animasi gerak terus */
+  }
+
+  @keyframes float{
+    0%,100%{transform:translateX(-50%) translateY(0px)}
+    50%{transform:translateX(-50%) translateY(-15px)}
   }
 
   h2{font-size:26px;margin-bottom:15px;font-weight:700}
@@ -89,6 +95,7 @@
 </div>
 
 <div id="page4" class="page">
+  <img src="Pentol%20Sticker.gif" class="gif">
   <h2 class="typewriter">Loh kok Tidak Mau 😢</h2>
   <p id="text4"></p>
   <button class="btn-yes" onclick="goToPage(5)">Mau dong ❤️</button>
@@ -152,4 +159,4 @@ function openWA(){
 }
 </script>
 </body>
- </html>
+   </html>
