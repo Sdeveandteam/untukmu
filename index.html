@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Spesial Buat Kamu 💌</title>
+
+<!-- Meta buat preview WhatsApp -->
+<meta property="og:title" content="Ada yang mau aku bilang 😳">
+<meta property="og:description" content="Klik dong, penting banget buat kamu. Janji cuma 1 menit">
+<meta property="og:image" content="https://bclblacki-star.github.io/untukmu/background.jpg">
+<meta property="og:url" content="https://bclblacki-star.github.io/untukmu/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#ff4d88">
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+  body,html{height:100%;overflow:hidden}
+  body{
+    background:url('background.jpg') no-repeat center/cover;
+    color:#fff;text-align:center;
+    display:flex;justify-content:center;align-items:center
+  }
+  .page{
+    display:none;width:90%;max-width:500px;
+    background:rgba(0,0,0,0.65);padding:30px;
+    border-radius:20px;backdrop-filter:blur(12px);
+    box-shadow:0 8px 30px rgba(0,0,0,0.3)
+  }
+  .page.active{display:block}
+  h2{font-size:26px;margin-bottom:15px;font-weight:700}
+  p{font-size:18px;line-height:1.6;margin-bottom:20px}
+  button{
+    padding:14px 28px;margin:10px;border:none;
+    border-radius:30px;font-size:16px;font-weight:600;
+    cursor:pointer;transition:0.3s
+  }
+  .btn-yes{background:linear-gradient(135deg,#ff4d88,#ff6b9d);color:#fff}
+  .btn-yes:hover{transform:scale(1.05)}
+  .btn-no{background:#444;color:#fff;position:relative}
+  .gif{width:130px;margin:15px auto;border-radius:15px}
+  audio{display:none}
+</style>
+</head>
+<body>
+
+<audio id="bgm" src="lagu.mp3" loop></audio>
+
+<div id="page1" class="page active">
+  <h2 data-aos="fade-down">Undangan Spesial 💌</h2>
+  <p data-aos="fade-up" data-aos-delay="200">Klik layar ini buat buka</p>
+</div>
+
+<div id="page2" class="page">
+  <img src="pentol.gif" class="gif">
+  <h2 data-aos="zoom-in">Hai Kamu...</h2>
+  <p data-aos="fade-up" data-aos-delay="200">Aku udah lama mikirin ini.<br>Jadi aku bikin halaman kecil ini buat kamu.</p>
+</div>
+
+<div id="page3" class="page">
+  <img src="pentol.gif" class="gif">
+  <h2 data-aos="fade-right">Jujur aja ya</h2>
+  <p data-aos="fade-left" data-aos-delay="200">Kamu itu orang yang bikin hariku lebih berwarna.<br>Mau nggak kita lebih dari sekedar temen?</p>
+  <button class="btn-yes" onclick="goToPage(5)">Mau ❤️</button>
+  <button class="btn-no" id="btnNo">Tidak Mau</button>
+</div>
+
+<div id="page4" class="page">
+  <h2 data-aos="shake">Loh kok Tidak Mau 😢</h2>
+  <p data-aos="fade-up">Yaudah deh, pilihannya cuma satu kok...</p>
+  <button class="btn-yes" onclick="goToPage(5)">Mau dong ❤️</button>
+</div>
+
+<div id="page5" class="page">
+  <img src="pentol.gif" class="gif">
+  <h2 data-aos="zoom-in">Yeayyy! Aku Seneng Banget ❤️</h2>
+  <p data-aos="fade-up">Makasih ya udah mau. Klik tombol di bawah buat lanjut chat aku</p>
+  <button class="btn-yes" onclick="openWA()">Lanjut ke WhatsApp</button>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration:1000,once:true});
+
+let current=1;
+const pages=document.querySelectorAll('.page');
+const bgm=document.getElementById('bgm');
+const btnNo=document.getElementById('btnNo');
+
+// Play musik pas klik pertama
+document.body.addEventListener('click',()=>{bgm.play().catch(()=>{})},{once:true});
+
+// Klik buat next page
+document.body.addEventListener('click',(e)=>{
+  if(e.target.tagName==='BUTTON') return;
+  if(current<3){goToPage(current+1)}
+});
+
+// Tombol tidak mau kabur
+btnNo.addEventListener('mouseover',()=>{
+  btnNo.style.position='absolute';
+  btnNo.style.left=Math.random()*70+'%';
+  btnNo.style.top=Math.random()*70+'%';
+});
+
+function goToPage(n){
+  pages[current-1].classList.remove('active');
+  pages[n-1].classList.add('active');
+  current=n;
+  AOS.refresh();
+}
+
+function openWA(){
+  window.location.href="https://wa.me/6281234567890?text=Aku%20mau%20❤️";
+}
+</script>
+</body>
+</html>
