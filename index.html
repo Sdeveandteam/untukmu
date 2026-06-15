@@ -23,14 +23,29 @@
     color:#fff;text-align:center;
     display:flex;justify-content:center;align-items:center
   }
+
 .page{
+    position:relative; /* biar GIF bisa absolute di atasnya */
     display:none;width:90%;max-width:500px;
-    background:rgba(0,0,0,0.35);padding:30px;
+    background:rgba(0,0,0,0.35);padding:40px 30px 30px;
     border-radius:20px;backdrop-filter:blur(8px)
   }
 .page.active{display:block}
+
+  /* GIF diposisikan absolute di atas box */
+.gif{
+    position:absolute;
+    top:-60px;
+    left:50%;
+    transform:translateX(-50%);
+    width:120px;
+    border-radius:15px;
+    pointer-events:none;
+  }
+
   h2{font-size:26px;margin-bottom:15px;font-weight:700}
   p{font-size:18px;line-height:1.6;margin-bottom:20px;min-height:50px}
+
 .typewriter{
     display:inline-block;overflow:hidden;white-space:nowrap;
     border-right:2px solid #ff4d88;
@@ -38,21 +53,20 @@
   }
   @keyframes typing{from{width:0}to{width:100%}}
   @keyframes blink{50%{border-color:transparent}}
+
   button{
     padding:14px 28px;margin:10px;border:none;
     border-radius:30px;font-size:16px;font-weight:600;
     cursor:pointer;transition:0.3s
   }
 .btn-yes{background:linear-gradient(135deg,#ff4d88,#ff6b9d);color:#fff}
+.btn-yes:hover{transform:scale(1.05)}
 .btn-no{background:#444;color:#fff;position:relative}
-.gif{width:130px;margin:15px auto;border-radius:15px}
   audio{display:none}
-  #debug{position:fixed;top:10px;left:10px;font-size:12px;background:#0008;padding:8px;border-radius:5px;z-index:999;color:#ff0}
 </style>
 </head>
 <body>
 
-<div id="debug"></div>
 <audio id="bgm" src="Sabar%20-%20Sadewok%20Official%20Music%20Video.mp3" loop preload="auto"></audio>
 
 <div id="page1" class="page active">
@@ -61,7 +75,7 @@
 </div>
 
 <div id="page2" class="page">
-  <img src="Pentol%20Sticker.gif" class="gif" onerror="document.getElementById('debug').innerText='GIF gagal load'">
+  <img src="Pentol%20Sticker.gif" class="gif">
   <h2 class="typewriter">Hai Kamu...</h2>
   <p id="text2"></p>
 </div>
@@ -138,4 +152,4 @@ function openWA(){
 }
 </script>
 </body>
-</html>
+ </html>
