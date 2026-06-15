@@ -27,21 +27,22 @@
 .page{
     position:relative;
     display:none;width:90%;max-width:500px;
-    background:rgba(0,0,0,0.35);padding:50px 30px 30px;
+    background:rgba(0,0,0,0.35);padding:30px;
     border-radius:20px;backdrop-filter:blur(8px)
   }
 .page.active{display:block}
 
-  /* GIF di atas box + animasi floating */
+  /* GIF floating di atas kotak */
 .gif{
-    position:absolute;
-    top:-75px; /* dinaikin lagi */
+    position:fixed;
+    top:18%; /* atur jarak dari atas layar. Makin kecil makin ke atas */
     left:50%;
     transform:translateX(-50%);
     width:120px;
     border-radius:15px;
     pointer-events:none;
-    animation:float 3s ease-in-out infinite; /* animasi gerak terus */
+    z-index:10;
+    animation:float 3s ease-in-out infinite;
   }
 
   @keyframes float{
@@ -75,19 +76,20 @@
 
 <audio id="bgm" src="Sabar%20-%20Sadewok%20Official%20Music%20Video.mp3" loop preload="auto"></audio>
 
+<!-- GIF tunggal buat semua halaman -->
+<img src="Pentol%20Sticker.gif" class="gif" id="gif">
+
 <div id="page1" class="page active">
   <h2 class="typewriter">Undangan Spesial 💌</h2>
   <p id="text1"></p>
 </div>
 
 <div id="page2" class="page">
-  <img src="Pentol%20Sticker.gif" class="gif">
   <h2 class="typewriter">Hai Kamu...</h2>
   <p id="text2"></p>
 </div>
 
 <div id="page3" class="page">
-  <img src="Pentol%20Sticker.gif" class="gif">
   <h2 class="typewriter">Jujur aja ya</h2>
   <p id="text3"></p>
   <button class="btn-yes" onclick="goToPage(5)">Mau ❤️</button>
@@ -95,14 +97,12 @@
 </div>
 
 <div id="page4" class="page">
-  <img src="Pentol%20Sticker.gif" class="gif">
   <h2 class="typewriter">Loh kok Tidak Mau 😢</h2>
   <p id="text4"></p>
   <button class="btn-yes" onclick="goToPage(5)">Mau dong ❤️</button>
 </div>
 
 <div id="page5" class="page">
-  <img src="Pentol%20Sticker.gif" class="gif">
   <h2 class="typewriter">Yeayyy! Aku Seneng Banget ❤️</h2>
   <p id="text5"></p>
   <button class="btn-yes" onclick="openWA()">Lanjut ke WhatsApp</button>
@@ -159,4 +159,4 @@ function openWA(){
 }
 </script>
 </body>
-   </html>
+ </html>
