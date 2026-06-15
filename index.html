@@ -32,10 +32,9 @@
   }
 .page.active{display:block}
 
-  /* GIF floating di atas kotak */
 .gif{
     position:fixed;
-    top:18%; /* atur jarak dari atas layar. Makin kecil makin ke atas */
+    top:18%;
     left:50%;
     transform:translateX(-50%);
     width:120px;
@@ -69,24 +68,37 @@
 .btn-yes{background:linear-gradient(135deg,#ff4d88,#ff6b9d);color:#fff}
 .btn-yes:hover{transform:scale(1.05)}
 .btn-no{background:#444;color:#fff;position:relative}
+
+  /* Tombol lanjut */
+.btn-next{
+    background:rgba(255,255,255,0.2);
+    color:#fff;
+    border:1px solid rgba(255,255,255,0.4);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.05)}
+  }
+
   audio{display:none}
 </style>
 </head>
 <body>
 
 <audio id="bgm" src="Sabar%20-%20Sadewok%20Official%20Music%20Video.mp3" loop preload="auto"></audio>
-
-<!-- GIF tunggal buat semua halaman -->
 <img src="Pentol%20Sticker.gif" class="gif" id="gif">
 
 <div id="page1" class="page active">
   <h2 class="typewriter">Undangan Spesial 💌</h2>
   <p id="text1"></p>
+  <button class="btn-next" onclick="goToPage(2)">Klik Saya 👆</button>
 </div>
 
 <div id="page2" class="page">
   <h2 class="typewriter">Hai Kamu...</h2>
   <p id="text2"></p>
+  <button class="btn-next" onclick="goToPage(3)">Lanjutkan ➡️</button>
 </div>
 
 <div id="page3" class="page">
@@ -122,13 +134,10 @@ const texts={
  5:"Makasih ya udah mau. Klik tombol di bawah buat lanjut chat aku"
 };
 
+// Play musik pas klik pertama
 document.body.addEventListener('click',()=>{bgm.play().catch(()=>{})},{once:true});
 
-document.body.addEventListener('click',(e)=>{
-  if(e.target.tagName==='BUTTON') return;
-  if(current<3){goToPage(current+1)}
-});
-
+// Tombol kabur
 btnNo.addEventListener('mouseover',()=>{
   btnNo.style.position='absolute';
   btnNo.style.left=Math.random()*70+'%';
