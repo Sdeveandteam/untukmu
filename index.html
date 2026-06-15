@@ -5,11 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Undangan Spesial Buat Kamu 💌</title>
 
-<!-- Meta buat preview WhatsApp -->
 <meta property="og:title" content="Ada yang mau aku bilang 😳">
 <meta property="og:description" content="Klik dong, penting banget buat kamu">
-<meta property="og:image" content="https://sdeveandteam.github.io/untukr/background.jpg">
-<meta property="og:url" content="https://sdeveandteam.github.io/untukr/">
+<meta property="og:image" content="https://sdeveandteam.github.io/untukmu/Screenshot_20260615-122643_Chrome.jpg">
+<meta property="og:url" content="https://sdeveandteam.github.io/untukmu/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#ff4d88">
 
@@ -17,47 +16,44 @@
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
   body,html{height:100%;overflow:hidden}
   body{
-    background:url('background.jpg') no-repeat center/cover;
+    background:linear-gradient(135deg,#ff4d88,#ff6b9d);
+    background-image:url('Screenshot_20260615-122643_Chrome.jpg');
+    background-size:cover;
+    background-position:center;
     color:#fff;text-align:center;
     display:flex;justify-content:center;align-items:center
   }
- .page{
+.page{
     display:none;width:90%;max-width:500px;
-    background:rgba(0,0,0,0.4);padding:30px;
+    background:rgba(0,0,0,0.35);padding:30px;
     border-radius:20px;backdrop-filter:blur(8px)
   }
- .page.active{display:block}
-
+.page.active{display:block}
   h2{font-size:26px;margin-bottom:15px;font-weight:700}
   p{font-size:18px;line-height:1.6;margin-bottom:20px;min-height:50px}
-
-  /* Efek ketikan */
- .typewriter{
-    display:inline-block;
-    overflow:hidden;
-    white-space:nowrap;
+.typewriter{
+    display:inline-block;overflow:hidden;white-space:nowrap;
     border-right:2px solid #ff4d88;
     animation:typing 2s steps(40,end), blink 0.7s step-end infinite;
   }
   @keyframes typing{from{width:0}to{width:100%}}
   @keyframes blink{50%{border-color:transparent}}
-
   button{
     padding:14px 28px;margin:10px;border:none;
     border-radius:30px;font-size:16px;font-weight:600;
     cursor:pointer;transition:0.3s
   }
- .btn-yes{background:linear-gradient(135deg,#ff4d88,#ff6b9d);color:#fff}
- .btn-yes:hover{transform:scale(1.05)}
- .btn-no{background:#444;color:#fff;position:relative}
-
- .gif{width:130px;margin:15px auto;border-radius:15px}
+.btn-yes{background:linear-gradient(135deg,#ff4d88,#ff6b9d);color:#fff}
+.btn-no{background:#444;color:#fff;position:relative}
+.gif{width:130px;margin:15px auto;border-radius:15px}
   audio{display:none}
+  #debug{position:fixed;top:10px;left:10px;font-size:12px;background:#0008;padding:8px;border-radius:5px;z-index:999;color:#ff0}
 </style>
 </head>
 <body>
 
-<audio id="bgm" src="lagu.mp3" loop></audio>
+<div id="debug"></div>
+<audio id="bgm" src="Sabar%20-%20Sadewok%20Official%20Music%20Video.mp3" loop preload="auto"></audio>
 
 <div id="page1" class="page active">
   <h2 class="typewriter">Undangan Spesial 💌</h2>
@@ -65,13 +61,13 @@
 </div>
 
 <div id="page2" class="page">
-  <img src="pentol.gif" class="gif" onerror="this.style.display='none'">
+  <img src="Pentol%20Sticker.gif" class="gif" onerror="document.getElementById('debug').innerText='GIF gagal load'">
   <h2 class="typewriter">Hai Kamu...</h2>
   <p id="text2"></p>
 </div>
 
 <div id="page3" class="page">
-  <img src="pentol.gif" class="gif" onerror="this.style.display='none'">
+  <img src="Pentol%20Sticker.gif" class="gif">
   <h2 class="typewriter">Jujur aja ya</h2>
   <p id="text3"></p>
   <button class="btn-yes" onclick="goToPage(5)">Mau ❤️</button>
@@ -85,7 +81,7 @@
 </div>
 
 <div id="page5" class="page">
-  <img src="pentol.gif" class="gif" onerror="this.style.display='none'">
+  <img src="Pentol%20Sticker.gif" class="gif">
   <h2 class="typewriter">Yeayyy! Aku Seneng Banget ❤️</h2>
   <p id="text5"></p>
   <button class="btn-yes" onclick="openWA()">Lanjut ke WhatsApp</button>
@@ -97,7 +93,6 @@ const pages=document.querySelectorAll('.page');
 const bgm=document.getElementById('bgm');
 const btnNo=document.getElementById('btnNo');
 
-// Teks buat efek ketikan
 const texts={
  1:"Klik layar ini buat buka",
  2:"Aku udah lama mikirin ini.\nJadi aku bikin halaman kecil ini buat kamu.",
@@ -106,25 +101,21 @@ const texts={
  5:"Makasih ya udah mau. Klik tombol di bawah buat lanjut chat aku"
 };
 
-// Play musik pas klik pertama
 document.body.addEventListener('click',()=>{bgm.play().catch(()=>{})},{once:true});
 
-// Klik buat next page
 document.body.addEventListener('click',(e)=>{
   if(e.target.tagName==='BUTTON') return;
   if(current<3){goToPage(current+1)}
 });
 
-// Tombol tidak mau kabur
 btnNo.addEventListener('mouseover',()=>{
   btnNo.style.position='absolute';
   btnNo.style.left=Math.random()*70+'%';
   btnNo.style.top=Math.random()*70+'%';
 });
 
-function typeWriter(element, text, speed=50){
-  let i=0;
-  element.innerHTML="";
+function typeWriter(element, text, speed=40){
+  let i=0;element.innerHTML="";
   const interval=setInterval(()=>{
     if(i<text.length){
       element.innerHTML+=text.charAt(i)==='\n'?'<br>':text.charAt(i);
@@ -140,7 +131,6 @@ function goToPage(n){
   typeWriter(document.getElementById('text'+n), texts[n], 40);
 }
 
-// Auto ketik halaman 1 pas load
 window.onload=()=>typeWriter(document.getElementById('text1'), texts[1], 50);
 
 function openWA(){
@@ -148,4 +138,4 @@ function openWA(){
 }
 </script>
 </body>
- </html>
+</html>
